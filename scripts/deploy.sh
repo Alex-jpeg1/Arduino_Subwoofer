@@ -1,4 +1,6 @@
 #!/bin/bash
+bash scripts/build.sh
+
 PORT=$(ls /dev/ttyACM* /dev/ttyUSB* 2>/dev/null | head -n 1)
 if [ -z "$PORT" ]; then
     echo "Error: No USB connection found"
