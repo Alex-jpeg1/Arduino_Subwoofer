@@ -5,7 +5,7 @@ on:
 
 jobs:
   call-setup-factory:
-    uses: Alex-jpeg1/Embedded-programming-setup/.github/workflows/main.yml@main
+    uses: Alex-jpeg1/Embedded-programming-setup/.github/workflows/Setup.yml@main
     with:
       project_name: 'Arduino_Subwoofer'
       language: 'cpp'
