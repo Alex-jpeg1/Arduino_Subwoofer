@@ -1,16 +1,17 @@
 { pkgs ? import <nixpkgs> {} }:
-pkgs.mkShell {
-  buildInputs = with pkgs; [
-    cmake
-    gnumake
-    avrdude
-    pkgsCross.avr.buildPackages.gcc
-    pkgsCross.avr.libcCross
-  ];
 
-  shellHook = ''
-    export AVR_CFLAGS="-isystem ${pkgs.pkgsCross.avr.libcCross}/avr/include"
-    export AVR_ASFLAGS="-isystem ${pkgs.pkgsCross.avr.libcCross}/avr/include"
-    echo "Environment ready for atmega328p"
+pkgs.buildFHSEnv {
+  name = "esp-idf-env";
+  targetPkgs = pkgs: with pkgs; [
+    git wget gnumake cmake ninja ccache
+    flex bison gperf pkg-config
+    python3 python3Packages.pip python3Packages.virtualenv
+    dfu-util libusb1 glibc zlib ncurses5 systemd
+    clang-tools
+  ];
+  profile = ''
+    export IDF_TOOLS_PATH="$PWD/.espressif"
+    echo "Started the enviroment"
   '';
+  runScript = "bash";
 }
