@@ -8,6 +8,8 @@ pkgs.buildFHSEnv {
     python3 python3Packages.pip python3Packages.virtualenv
     dfu-util libusb1 glibc zlib ncurses5 systemd
     clang-tools
+    gtk3 gdk-pixbuf glib pango cairo
+    webkitgtk_4_1 gtk4 libsoup_3
   ];
   profile = ''
     export IDF_TOOLS_PATH="$PWD/.espressif"

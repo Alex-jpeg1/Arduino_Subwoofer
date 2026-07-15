@@ -18,6 +18,8 @@ To ensure high performance and scalability, the software architecture leverages 
 * **Compiler:** `xtensa-esp32-elf-gcc`
 * **Development Environment:** NixOS (Reproducible toolchain via `nix-shell` / `flake.nix`)
 
+## Chosen software arhitecture
+* **Data processing:** To ensure a seemless state management i will implement a state machine which will have the role of reading adc values, proccess them and outputting the data. The input and output module will be abstracted and will allow a configuration and status reads based on the current state they are in. The data will be collected using the i2s protocol and DMA ping-pong so we can always ensure we have enough data and will also yield the CPU to other tasks efficiently, preventing core starvation by relying on FreeRTOS blocking functions rather than a rigid cyclic timer.  
 ## Build Instructions (NixOS)
 This project is built using the ESP-IDF framework within a reproducible Nix environment.
 
